@@ -1,0 +1,1022 @@
+/* ============================================
+   ROMANTIC BIRTHDAY PAGE - STATE-BASED DESIGN
+   No scrolling - interaction-driven progression
+   ============================================ */
+
+/* CSS Variables */
+:root {
+    --lavender: #E6D4F7;
+    --lavender-dark: #D4B5E8;
+    --blush-pink: #FFE5E8;
+    --blush-pink-dark: #FFB8C1;
+    --peach: #FFD7CC;
+    --warm-cream: #FFF8F0;
+    --soft-purple: #F0E6FF;
+    --night-lavender: #9B7CB8;
+    --night-purple: #7B5A95;
+    --heart-red: #FF6B9D;
+    --candle-yellow: #FFE66D;
+    --flame-orange: #FF9B71;
+    --flame-yellow: #FFD93D;
+    --envelope-pink: #FFD6E0;
+    --envelope-dark: #FFB8C1;
+    --paper-cream: #FFFBF5;
+}
+
+/* Reset and Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+    color: #5a4a6a;
+    cursor: default;
+}
+
+/* Scene Container - State-Based Display */
+.scene {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+    z-index: 1;
+}
+
+.scene.active {
+    display: flex;
+    opacity: 1;
+    z-index: 10;
+}
+
+.scene.transitioning {
+    opacity: 0;
+}
+
+/* ============================================
+   SCENE 1: CAKE INTRO
+   ============================================ */
+
+/* Animated Gradient Background */
+.gradient-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--lavender) 0%, var(--blush-pink) 50%, var(--peach) 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 10s ease-in-out infinite;
+    z-index: 1;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* Particles Container */
+.particles-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.particle.heart {
+    font-size: 18px;
+    color: var(--heart-red);
+    animation: floatParticle 20s ease-in-out infinite;
+}
+
+.particle.sparkle {
+    width: 4px;
+    height: 4px;
+    background: var(--candle-yellow);
+    border-radius: 50%;
+    box-shadow: 0 0 6px var(--candle-yellow);
+    animation: floatParticle 15s ease-in-out infinite, twinkle 2s ease-in-out infinite;
+}
+
+@keyframes floatParticle {
+    0% {
+        transform: translateY(100vh) translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    100% {
+        transform: translateY(-100px) translateX(50px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.4;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.3);
+    }
+}
+
+/* Cake Container */
+.cake-container {
+    position: relative;
+    z-index: 5;
+    animation: cakeFadeIn 1.5s ease-out;
+}
+
+@keyframes cakeFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cake-wrapper {
+    position: relative;
+    width: 300px;
+    height: 250px;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+/* Cake Layers with 3D effect */
+.cake-layer {
+    position: absolute;
+    border-radius: 15px;
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.2),
+        0 5px 15px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    transform-style: preserve-3d;
+}
+
+.layer-1 {
+    width: 280px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--blush-pink) 0%, var(--peach) 100%);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.layer-2 {
+    width: 240px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--lavender) 0%, var(--blush-pink) 100%);
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.layer-3 {
+    width: 200px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--peach) 0%, var(--lavender) 100%);
+    bottom: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Frosting */
+.frosting {
+    position: absolute;
+    background: var(--warm-cream);
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.frosting-1 {
+    width: 30px;
+    height: 25px;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.frosting-2 {
+    width: 25px;
+    height: 20px;
+    bottom: 75px;
+    left: calc(50% - 60px);
+}
+
+.frosting-3 {
+    width: 25px;
+    height: 20px;
+    bottom: 75px;
+    left: calc(50% + 60px);
+}
+
+/* Candles */
+.candles-container {
+    position: absolute;
+    bottom: 220px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 40px;
+    z-index: 10;
+}
+
+.candle {
+    position: relative;
+    width: 12px;
+    height: 40px;
+    background: linear-gradient(180deg, #fff 0%, var(--warm-cream) 100%);
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+.candle-wick {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 10px;
+    background: #8B6F47;
+    border-radius: 1px;
+}
+
+/* Flame Animation */
+.flame {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 20px;
+    background: radial-gradient(ellipse at bottom, var(--flame-yellow) 0%, var(--flame-orange) 50%, transparent 70%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    box-shadow: 0 0 10px var(--flame-orange), 0 0 20px var(--flame-yellow);
+    animation: flicker 0.3s ease-in-out infinite alternate;
+    transform-origin: bottom center;
+}
+
+.flame-1 { animation-delay: 0s; }
+.flame-2 { animation-delay: 0.1s; }
+.flame-3 { animation-delay: 0.2s; }
+
+@keyframes flicker {
+    0% {
+        transform: translateX(-50%) translateY(0) rotate(-2deg) scaleY(1);
+        opacity: 0.9;
+    }
+    100% {
+        transform: translateX(-50%) translateY(-2px) rotate(2deg) scaleY(1.1);
+        opacity: 1;
+    }
+}
+
+/* Flame States - Blowing */
+.flame.blowing {
+    animation: shakeFlame 0.15s ease-in-out infinite, flicker 0.15s ease-in-out infinite alternate;
+}
+
+@keyframes shakeFlame {
+    0%, 100% { transform: translateX(-50%) translateY(-1px) rotate(-8deg) scale(0.9); }
+    50% { transform: translateX(-50%) translateY(-3px) rotate(8deg) scale(0.8); }
+}
+
+.flame.blown {
+    animation: blowOut 0.6s ease-out forwards;
+}
+
+@keyframes blowOut {
+    0% {
+        transform: translateX(-50%) translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-50%) translateY(-5px) scale(0.2);
+        opacity: 0;
+    }
+}
+
+/* Smoke Animation */
+.smoke-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 15;
+}
+
+.smoke-particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: rgba(200, 200, 200, 0.7);
+    border-radius: 50%;
+    animation: smokeRise 2.5s ease-out forwards;
+    filter: blur(2px);
+}
+
+@keyframes smokeRise {
+    0% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(-120px) translateX(var(--drift)) scale(2.5);
+        opacity: 0;
+    }
+}
+
+/* Instruction Text */
+.instruction-text {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    color: #5a4a6a;
+    z-index: 10;
+    animation: fadeIn 1s ease-out 0.8s both;
+    pointer-events: none;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Glow Expand Effect */
+.glow-expand {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 182, 193, 0.6) 0%, transparent 70%);
+    filter: blur(80px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 20;
+}
+
+.glow-expand.active {
+    animation: glowExpand 2s ease-out forwards;
+}
+
+@keyframes glowExpand {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(4);
+        opacity: 0;
+    }
+}
+
+/* Confetti */
+.confetti-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 30;
+}
+
+.confetti-piece {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: var(--heart-red);
+    animation: confettiBurst 2.5s ease-out forwards;
+}
+
+.confetti-piece.heart {
+    background: transparent;
+    color: var(--heart-red);
+    font-size: 18px;
+    width: auto;
+    height: auto;
+}
+
+@keyframes confettiBurst {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0deg) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-400px) translateX(var(--drift-x)) rotate(720deg) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Cake Fade Down */
+.cake-container.fade-down {
+    animation: cakeFadeDown 1.5s ease-in-out forwards;
+}
+
+@keyframes cakeFadeDown {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(100px) scale(0.9);
+    }
+}
+
+/* ============================================
+   SCENE 2: LOVE LETTER REVEAL
+   ============================================ */
+
+/* Night Background */
+.night-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, var(--night-purple) 0%, var(--night-lavender) 50%, var(--night-purple) 100%);
+    z-index: 1;
+}
+
+/* Falling Hearts */
+.falling-hearts {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.falling-heart {
+    position: absolute;
+    color: var(--heart-red);
+    font-size: 24px;
+    opacity: 0.7;
+    animation: fallHeart 15s linear infinite;
+    filter: blur(0.5px);
+}
+
+@keyframes fallHeart {
+    0% {
+        transform: translateY(-100px) translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.7;
+    }
+    90% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(calc(100vh + 100px)) translateX(var(--drift-x)) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Letter Container - Split Layout */
+.letter-layout {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 80px;
+    gap: 80px;
+}
+
+.envelope-side {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.message-side {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 30px;
+    flex-shrink: 0;
+}
+
+/* Envelope Wrapper */
+.envelope-wrapper {
+    perspective: 1500px;
+    perspective-origin: center center;
+}
+
+.envelope {
+    position: relative;
+    width: 400px;
+    height: 300px;
+    transform-style: preserve-3d;
+    animation: envelopeDrop 1s ease-out;
+}
+
+@keyframes envelopeDrop {
+    from {
+        opacity: 0;
+        transform: translateY(-100px) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Envelope Parts */
+.envelope-front,
+.envelope-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--envelope-pink);
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.envelope-front {
+    z-index: 3;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
+    transform-style: preserve-3d;
+}
+
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 85%;
+    background: var(--envelope-dark);
+    clip-path: polygon(0 0, 100% 0, 50% 100%, 0 0);
+    transform-origin: top center;
+    transform: rotateX(0deg) translateZ(1px);
+    transition: transform 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 4;
+    backface-visibility: hidden;
+}
+
+.envelope-flap.open {
+    transform: rotateX(-180deg) translateZ(1px);
+    z-index: 1;
+}
+
+.envelope-back {
+    z-index: 1;
+    clip-path: polygon(0 15%, 50% 0, 100% 15%, 100% 100%, 0 100%);
+}
+
+/* Letter Paper */
+.letter-paper {
+    position: absolute;
+    top: 40px;
+    left: 25px;
+    width: calc(100% - 50px);
+    height: calc(100% - 80px);
+    background: var(--paper-cream);
+    border-radius: 4px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.25);
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(80px) scale(0.85);
+    transition: opacity 1.3s ease-out 0.8s, transform 1.3s ease-out 0.8s;
+    padding: 35px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    min-height: 180px;
+}
+
+.letter-paper.visible {
+    opacity: 1;
+    transform: translateY(-10px) scale(1);
+    z-index: 6;
+}
+
+/* Letter Content */
+.letter-content {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+}
+
+.letter-line {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.75rem;
+    line-height: 1.7;
+    color: #3a2a4a;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: typeLine 1.2s ease-out forwards;
+    margin-bottom: 18px;
+    display: block;
+    position: relative;
+    z-index: 10;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    font-weight: 500;
+}
+
+.letter-line[data-line="1"] { animation-delay: 0.8s; }
+.letter-line[data-line="2"] { animation-delay: 2.3s; }
+.letter-line[data-line="3"] { animation-delay: 3.8s; }
+
+@keyframes typeLine {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Love Message (Right Side) */
+.love-message {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+.love-message.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.message-line {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: var(--blush-pink);
+    margin-bottom: 10px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Time Counter */
+.time-counter {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.time-counter.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.counter-label {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.1rem;
+    color: var(--blush-pink);
+    margin-bottom: 20px;
+    text-align: center;
+    opacity: 0.9;
+}
+
+.counter-display {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.time-unit {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 182, 193, 0.3);
+    border-radius: 15px;
+    padding: 15px 20px;
+    min-width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.time-value {
+    font-family: 'Pacifico', cursive;
+    font-size: 2.5rem;
+    color: #FF69B4;
+    font-weight: 600;
+    text-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+}
+
+.time-label {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+    color: var(--blush-pink);
+    text-transform: capitalize;
+    opacity: 0.8;
+}
+
+/* Final Button */
+.final-button-wrapper {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    margin-top: 30px;
+}
+
+.final-button-wrapper.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.final-button {
+    padding: 18px 40px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    color: var(--warm-cream);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.final-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.final-button:active {
+    transform: scale(0.98);
+}
+
+/* ============================================
+   SCENE 3: FINAL PAGE
+   ============================================ */
+
+.final-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    z-index: 1;
+}
+
+.final-layout {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 80px;
+    animation: finalFadeIn 1.5s ease-out;
+}
+
+@keyframes finalFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Tree Container - Left Side (Canvas-based) */
+.tree-container {
+    position: relative;
+    width: 45%;
+    height: 90%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: visible;
+}
+
+#treeCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 1;
+    background: #000000;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+/* UPDATED: Same Pink Color as Trunk with Glow */
+.tree-ground {
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 80px;
+    background: radial-gradient(
+        ellipse at center top,
+        #FFC0CB 80%,
+        rgba(255, 192, 203, 0.9) 15%,
+        rgba(255, 192, 203, 0.6) 35%,
+        rgba(255, 192, 203, 0.3) 60%,
+        transparent 100%
+    );
+    border-radius: 50%;
+    z-index: 10;
+    box-shadow: 
+        0 0 25px rgba(255, 192, 203, 0.8),
+        0 -10px 20px rgba(255, 192, 203, 0.6),
+        0 0 40px rgba(255, 192, 203, 0.5);
+    filter: blur(4px);
+    pointer-events: none;
+}
+
+/* Final Content - Right Side */
+.final-content {
+    width: 45%;
+    text-align: center;
+    animation: contentFadeIn 1s ease-out 0.5s both;
+}
+
+@keyframes contentFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.final-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    color: var(--warm-cream);
+    margin-bottom: 30px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.final-message {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.8rem;
+    color: var(--warm-cream);
+    opacity: 0.9;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.final-message-sub {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    color: var(--blush-pink);
+    opacity: 0.8;
+    margin-top: 20px;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+    .cake-wrapper {
+        width: 250px;
+        height: 200px;
+    }
+    
+    .layer-1 {
+        width: 230px;
+        height: 65px;
+    }
+    
+    .layer-2 {
+        width: 200px;
+        height: 55px;
+        bottom: 65px;
+    }
+    
+    .layer-3 {
+        width: 170px;
+        height: 50px;
+        bottom: 120px;
+    }
+    
+    .candles-container {
+        bottom: 170px;
+        gap: 30px;
+    }
+    
+    .letter-layout {
+        flex-direction: column;
+        padding: 40px 20px;
+        gap: 30px;
+    }
+    
+    .envelope-side {
+        width: 100%;
+    }
+    
+    .message-side {
+        width: 100%;
+        align-items: center;
+    }
+    
+    .envelope {
+        width: 320px;
+        height: 240px;
+    }
+    
+    .letter-line {
+        font-size: 1.5rem;
+    }
+    
+    .message-line {
+        font-size: 1.4rem;
+        text-align: center;
+    }
+    
+    .time-unit {
+        min-width: 80px;
+        padding: 12px 15px;
+    }
+    
+    .time-value {
+        font-size: 2rem;
+    }
+    
+    .time-label {
+        font-size: 0.8rem;
+    }
+    
+    .instruction-text {
+        font-size: 1.5rem;
+        bottom: 60px;
+    }
+    
+    .final-layout {
+        flex-direction: column;
+        padding: 40px 20px;
+    }
+    
+    .tree-container {
+        width: 100%;
+        height: 50%;
+        margin-bottom: 40px;
+    }
+    
+    .final-content {
+        width: 100%;
+    }
+    
+    .final-title {
+        font-size: 2.5rem;
+    }
+    
+    .final-message {
+        font-size: 1.4rem;
+    }
+}

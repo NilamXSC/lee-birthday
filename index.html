@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Leeku ❤️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Pacifico&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- SCENE 1: Cake Intro -->
+    <section id="scene-cake" class="scene active">
+        <div class="gradient-background"></div>
+        <div class="particles-container" id="particles"></div>
+        
+        <div class="cake-container">
+            <div class="cake-wrapper">
+                <!-- Cake Layers -->
+                <div class="cake-layer layer-3"></div>
+                <div class="cake-layer layer-2"></div>
+                <div class="cake-layer layer-1"></div>
+                
+                <!-- Frosting -->
+                <div class="frosting frosting-1"></div>
+                <div class="frosting frosting-2"></div>
+                <div class="frosting frosting-3"></div>
+                
+                <!-- Candles -->
+                <div class="candles-container" id="candles">
+                    <div class="candle" data-candle="1">
+                        <div class="candle-wick"></div>
+                        <div class="flame flame-1"></div>
+                    </div>
+                    <div class="candle" data-candle="2">
+                        <div class="candle-wick"></div>
+                        <div class="flame flame-2"></div>
+                    </div>
+                    <div class="candle" data-candle="3">
+                        <div class="candle-wick"></div>
+                        <div class="flame flame-3"></div>
+                    </div>
+                </div>
+                
+                <!-- Smoke particles -->
+                <div class="smoke-container" id="smoke"></div>
+            </div>
+        </div>
+        
+        <div class="instruction-text">
+            <p>Make a wish, Leeku ✨</p>
+        </div>
+        
+        <div class="glow-expand" id="glowExpand"></div>
+    </section>
+
+    <!-- SCENE 2: Love Letter Reveal -->
+    <section id="scene-letter" class="scene">
+        <div class="night-background"></div>
+        <div class="falling-hearts" id="fallingHearts"></div>
+        
+        <div class="letter-layout">
+            <!-- Left Side: Envelope -->
+            <div class="envelope-side">
+                <div class="envelope-wrapper">
+                    <div class="envelope" id="envelope">
+                        <div class="envelope-front">
+                            <div class="envelope-flap"></div>
+                        </div>
+                        <div class="envelope-back"></div>
+                        <div class="letter-paper" id="letterPaper">
+                            <div class="letter-content" id="letterContent">
+                                <p class="letter-line" data-line="1">I love you more than words,</p>
+                                <p class="letter-line" data-line="2">You are my calm, my happiness, my home.</p>
+                                <p class="letter-line" data-line="3">My sweet Leeku</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Side: Message & Timer -->
+            <div class="message-side">
+                <div class="love-message">
+                    <div class="message-line">Happy Birthday My Sweet Sunshine,</div>
+                    <div class="message-line">Keep blessing my life with gentle light,</div>
+                    <div class="message-line">With hearts in every shade of love,</div>
+                    <div class="message-line">Forever blooming in my heart.</div>
+                </div>
+                
+                <div class="time-counter" id="timeCounter">
+                    <div class="counter-label">Time since you made the world brighter</div>
+                    <div class="counter-display">
+                        <div class="time-unit">
+                            <span class="time-value" id="days">0</span>
+                            <span class="time-label">Days</span>
+                        </div>
+                        <div class="time-unit">
+                            <span class="time-value" id="hours">00</span>
+                            <span class="time-label">Hours</span>
+                        </div>
+                        <div class="time-unit">
+                            <span class="time-value" id="minutes">00</span>
+                            <span class="time-label">Minutes</span>
+                        </div>
+                        <div class="time-unit">
+                            <span class="time-value" id="seconds">00</span>
+                            <span class="time-label">Seconds</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="final-button-wrapper" id="finalButtonWrapper">
+                    <button class="final-button" id="finalButton">One more thing 💖</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCENE 3: Final Page -->
+    <section id="scene-final" class="scene">
+        <div class="final-background"></div>
+        
+        <div class="final-layout">
+            <!-- Left Side: Animated Love Tree (Canvas-based) -->
+            <div class="tree-container" id="treeContainer">
+                <canvas id="treeCanvas"></canvas>
+                <div class="tree-ground"></div>
+            </div>
+            
+            <!-- Right Side: Final Message -->
+            <div class="final-content">
+                <h1 class="final-title">Happy Birthday, Leeku ❤️</h1>
+                <p class="final-message">You make everything better.</p>
+                <p class="final-message-sub">Every moment with you is a blessing.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Confetti container -->
+    <div class="confetti-container" id="confetti"></div>
+
+    <!-- Background Audio -->
+    <audio id="bgMusic" preload="auto" loop>
+        <source src="assets/happy-birthday.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="blowSound" preload="auto">
+        <source src="assets/blow-sound.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="chimeSound" preload="auto">
+        <source src="assets/chime.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="love.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
