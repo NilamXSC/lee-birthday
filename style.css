@@ -17,7 +17,7 @@
     --paper-cream: #FFFBF5;
 }
 
-/* Reset and Base */
+
 * {
     margin: 0;
     padding: 0;
@@ -34,7 +34,7 @@ html, body {
     cursor: default;
 }
 
-/* Scene Container - State-Based Display */
+
 .scene {
     position: fixed;
     top: 0;
@@ -59,11 +59,7 @@ html, body {
     opacity: 0;
 }
 
-/* ============================================
-   SCENE 1: CAKE INTRO
-   ============================================ */
 
-/* Animated Gradient Background */
 .gradient-background {
     position: absolute;
     top: 0;
@@ -135,7 +131,6 @@ html, body {
     }
 }
 
-/* Cake Container */
 .cake-container {
     position: relative;
     z-index: 5;
@@ -161,7 +156,7 @@ html, body {
     perspective: 1000px;
 }
 
-/* Cake Layers with 3D effect */
+/* cake 3d effect */
 .cake-layer {
     position: absolute;
     border-radius: 15px;
@@ -199,7 +194,7 @@ html, body {
     transform: translateX(-50%);
 }
 
-/* Frosting */
+/* frosting */
 .frosting {
     position: absolute;
     background: var(--warm-cream);
@@ -229,7 +224,7 @@ html, body {
     left: calc(50% + 60px);
 }
 
-/* Candles */
+/* cndles */
 .candles-container {
     position: absolute;
     bottom: 220px;
@@ -260,7 +255,7 @@ html, body {
     border-radius: 1px;
 }
 
-/* Flame Animation */
+/* flame animatn */
 .flame {
     position: absolute;
     top: -20px;
@@ -290,7 +285,7 @@ html, body {
     }
 }
 
-/* Flame States - Blowing */
+/* blow flame code */
 .flame.blowing {
     animation: shakeFlame 0.15s ease-in-out infinite, flicker 0.15s ease-in-out infinite alternate;
 }
@@ -315,7 +310,7 @@ html, body {
     }
 }
 
-/* Smoke Animation */
+/* smoke animatn */
 .smoke-container {
     position: absolute;
     top: 0;
@@ -347,7 +342,6 @@ html, body {
     }
 }
 
-/* Instruction Text */
 .instruction-text {
     position: absolute;
     bottom: 80px;
@@ -367,7 +361,7 @@ html, body {
     to { opacity: 1; }
 }
 
-/* Glow Expand Effect */
+
 .glow-expand {
     position: absolute;
     width: 300px;
@@ -401,7 +395,6 @@ html, body {
     }
 }
 
-/* Confetti */
 .confetti-container {
     position: fixed;
     width: 100%;
@@ -437,7 +430,6 @@ html, body {
     }
 }
 
-/* Cake Fade Down */
 .cake-container.fade-down {
     animation: cakeFadeDown 1.5s ease-in-out forwards;
 }
@@ -453,11 +445,7 @@ html, body {
     }
 }
 
-/* ============================================
-   SCENE 2: LOVE LETTER REVEAL
-   ============================================ */
 
-/* Night Background */
 .night-background {
     position: absolute;
     width: 100%;
@@ -466,7 +454,6 @@ html, body {
     z-index: 1;
 }
 
-/* Falling Hearts */
 .falling-hearts {
     position: absolute;
     width: 100%;
@@ -502,7 +489,6 @@ html, body {
     }
 }
 
-/* Letter Container - Split Layout */
 .letter-layout {
     position: relative;
     z-index: 10;
@@ -533,7 +519,6 @@ html, body {
     flex-shrink: 0;
 }
 
-/* Envelope Wrapper */
 .envelope-wrapper {
     perspective: 1500px;
     perspective-origin: center center;
@@ -558,7 +543,6 @@ html, body {
     }
 }
 
-/* Envelope Parts */
 .envelope-front,
 .envelope-back {
     position: absolute;
@@ -600,7 +584,6 @@ html, body {
     clip-path: polygon(0 15%, 50% 0, 100% 15%, 100% 100%, 0 100%);
 }
 
-/* Letter Paper */
 .letter-paper {
     position: absolute;
     top: 40px;
@@ -628,7 +611,6 @@ html, body {
     z-index: 6;
 }
 
-/* Letter Content */
 .letter-content {
     width: 100%;
     height: 100%;
@@ -671,7 +653,6 @@ html, body {
     }
 }
 
-/* Love Message (Right Side) */
 .love-message {
     opacity: 0;
     transform: translateX(30px);
@@ -692,7 +673,6 @@ html, body {
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Time Counter */
 .time-counter {
     opacity: 0;
     transform: translateX(30px);
@@ -751,7 +731,7 @@ html, body {
     opacity: 0.8;
 }
 
-/* Final Button */
+
 .final-button-wrapper {
     opacity: 0;
     transform: translateX(30px);
@@ -788,9 +768,6 @@ html, body {
     transform: scale(0.98);
 }
 
-/* ============================================
-   SCENE 3: FINAL PAGE
-   ============================================ */
 
 .final-background {
     position: absolute;
@@ -821,7 +798,6 @@ html, body {
     }
 }
 
-/* Tree Container - Left Side (Canvas-based) */
 .tree-container {
     position: relative;
     width: 45%;
@@ -843,7 +819,7 @@ html, body {
     left: 0;
 }
 
-/* UPDATED: Same Pink Color as Trunk with Glow */
+/* trunk and branch same color */
 .tree-ground {
     position: absolute;
     bottom: -5px;
@@ -869,7 +845,6 @@ html, body {
     pointer-events: none;
 }
 
-/* Final Content - Right Side */
 .final-content {
     width: 45%;
     text-align: center;
@@ -912,9 +887,6 @@ html, body {
     margin-top: 20px;
 }
 
-/* ============================================
-   RESPONSIVE DESIGN
-   ============================================ */
 
 @media (max-width: 768px) {
     .cake-wrapper {
