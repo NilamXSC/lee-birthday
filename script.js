@@ -1,9 +1,3 @@
-/* ============================================
-   ROMANTIC BIRTHDAY PAGE - STATE-BASED CONTROLLER
-   SMOOTH GRADUAL BLOOM WITH FADE-IN ANIMATION
-   ============================================ */
-
-// State Management
 const STATE = {
     CAKE: 'cake',
     LETTER: 'letter',
@@ -16,7 +10,7 @@ let isBlowing = false;
 let confettiActive = false;
 let envelopeOpened = false;
 
-// Microphone for candle blowing
+// imp : microphone add
 let microphone = null;
 let audioContext = null;
 let analyser = null;
@@ -25,7 +19,6 @@ let isListening = false;
 const BLOW_THRESHOLD = 30;
 let blowVolumeCheckInterval = null;
 
-// DOM Elements
 const cakeScene = document.getElementById('scene-cake');
 const letterScene = document.getElementById('scene-letter');
 const finalScene = document.getElementById('scene-final');
@@ -45,14 +38,10 @@ const fallingHeartsContainer = document.getElementById('fallingHearts');
 const finalButtonWrapper = document.getElementById('finalButtonWrapper');
 const finalButton = document.getElementById('finalButton');
 
-// Audio Elements
 const bgMusic = document.getElementById('bgMusic');
 const blowSound = document.getElementById('blowSound');
 const chimeSound = document.getElementById('chimeSound');
 
-// ============================================
-// INITIALIZATION
-// ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
     initializePage();
@@ -185,9 +174,6 @@ function setupEventListeners() {
     }
 }
 
-// ============================================
-// SCENE MANAGEMENT
-// ============================================
 
 function showScene(state) {
     document.querySelectorAll('.scene').forEach(scene => {
@@ -269,9 +255,7 @@ function transitionToFinal() {
     }, 1500);
 }
 
-// ============================================
-// CANDLE BLOWING INTERACTION
-// ============================================
+// candle blow code
 
 function startBlowing() {
     if (candlesBlown || isBlowing) return;
@@ -397,9 +381,7 @@ function createConfetti() {
     }
 }
 
-// ============================================
-// PARTICLE EFFECTS
-// ============================================
+// partcle effect
 
 function createInitialParticles() {
     const numParticles = 20;
@@ -438,9 +420,7 @@ function createParticle() {
     }, 20000);
 }
 
-// ============================================
-// LETTER SCENE INITIALIZATION
-// ============================================
+// love letter code
 
 function initializeLetterScene() {
     if (envelopeOpened) return;
@@ -541,7 +521,7 @@ function openEnvelope() {
             console.log('📝 Letter visible');
         }
         
-        // FORCE SHOW love message on right side
+        
         setTimeout(() => {
             const loveMessage = document.querySelector('.love-message');
             if (loveMessage) {
@@ -553,7 +533,7 @@ function openEnvelope() {
             }
         }, 1500);
         
-        // FORCE SHOW timer after message
+       
         setTimeout(() => {
             const timeCounter = document.getElementById('timeCounter');
             if (timeCounter) {
@@ -565,7 +545,7 @@ function openEnvelope() {
             }
         }, 3000);
         
-        // FORCE SHOW final button last
+     
         setTimeout(() => {
             if (finalButtonWrapper) {
                 finalButtonWrapper.classList.add('visible');
@@ -578,10 +558,7 @@ function openEnvelope() {
     }, 1200);
 }
 
-// ============================================
-// CANVAS TREE ANIMATION (FINAL SCENE)
-// WITH SMOOTH FADE-IN GRADUAL BLOOM
-// ============================================
+// final page love tree
 
 let tree = null;
 let treeAnimationFrame = null;
@@ -698,7 +675,7 @@ function startTreeGrowth() {
             });
             console.log('✅ Branch growth complete - Starting GRADUAL BLOOM');
             
-            // Start bloom AFTER tree completes
+          
             setTimeout(() => {
                 startHeartBloom();
             }, 500);
@@ -717,7 +694,6 @@ function startHeartBloom() {
     const maxBlooms = 1500;
     let waveIndex = 0;
     
-    // Very gradual progressive pattern with LONG delays
     const wavePattern = [
         { hearts: 1, delay: 800 },     // 1 heart - 800ms
         { hearts: 2, delay: 800 },     // 2 more - 800ms
