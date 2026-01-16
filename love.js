@@ -1,8 +1,3 @@
-/* ============================================
-   LOVE TREE CANVAS ANIMATION
-   WITH ANIMATED GRASS BASE
-   ============================================ */
-
 (function(window){
     'use strict';
 
@@ -22,7 +17,7 @@
         return z < 0;
     }
 
-    // Point class
+    
     function Point(x, y) {
         this.x = x || 0;
         this.y = y || 0;
@@ -58,7 +53,7 @@
         }
     };
 
-    // Heart shape class
+    
     function Heart() {
         var points = [], x, y, t;
         for (var i = 10; i < 30; i += 0.2) {
@@ -77,7 +72,7 @@
         }
     };
 
-    // Branch class
+    
     function Branch(tree, point1, point2, point3, radius, length, branchs) {
         this.tree = tree;
         this.point1 = point1;
@@ -149,7 +144,7 @@
         }
     };
 
-    // Bloom (Heart) class
+    
     function Bloom(tree, point, figure, color, alpha, angle, scale, place, speed) {
         this.tree = tree;
         this.point = point;
@@ -218,7 +213,7 @@
         }
     };
 
-    // Ground Petal class - NEW!
+  
     function GroundPetal(x, y, figure, color, scale, angle) {
         this.x = x;
         this.y = y;
@@ -255,7 +250,7 @@
         }
     };
 
-    // Tree class
+   
     function Tree(canvas, width, height, opt) {
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
@@ -286,7 +281,7 @@
         },
 
         initFooter: function() {
-            // Footer for tree base
+           
         },
 
         initBranch: function() {
@@ -324,7 +319,7 @@
             
             var generated = 0;
             
-            // Center fill
+            
             var centerFillCount = 150;
             var centerRadius = heartScale * 0.35;
             for (var c = 0; c < centerFillCount; c++) {
@@ -351,7 +346,7 @@
                 generated++;
             }
             
-            // Heart outline layers
+           
             var layers = 10;
             var heartsPerLayer = Math.ceil((totalHearts - centerFillCount) / layers);
             
@@ -480,7 +475,7 @@
             }
         },
 
-        // NEW: Add petal to ground
+        
         addGroundPetal: function(bloom) {
             if (this.groundPetals.length >= this.maxGroundPetals) {
                 this.groundPetals.shift(); // Remove oldest
@@ -536,12 +531,12 @@
             }
         },
 
-        // NEW: Draw ground line
+        
         drawGround: function() {
             var ctx = this.ctx;
             var y = this.groundY;
             
-            // Ground line
+            
             ctx.strokeStyle = '#8B7355';
             ctx.lineWidth = 3;
             ctx.beginPath();
@@ -556,7 +551,7 @@
         }
     };
 
-    // Export to window
+    
     window.random = random;
     window.bezier = bezier;
     window.Point = Point;
