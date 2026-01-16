@@ -1,4 +1,4 @@
-# Happy Birthday, Leena! ❤️
+# Happy Birthday webpage for girlfriend
 
 A romantic, interactive birthday webpage with beautiful animations and heartfelt messages.
 
@@ -91,13 +91,6 @@ lee-birthday/
 - Background music loops automatically after candles are blown
 - Modern browsers may require user interaction before playing audio
 
-## 💝 Made with Love
+## 💝 Designed by Nilam Chakraborty
 
-This page was carefully crafted with attention to:
-- Smooth, calming animations
-- Romantic color palette
-- Emotional pacing
-- Beautiful typography
-- Interactive engagement
-
-Enjoy celebrating Leena's special day! ✨
+Enjoy celebrating. 
