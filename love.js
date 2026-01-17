@@ -219,7 +219,7 @@
         this.y = y;
         this.figure = figure;
         this.color = color;
-        this.scale = scale * 0.6; // Smaller on ground
+        this.scale = scale * 0.6;
         this.angle = angle;
         this.alpha = 0.8;
         this.swayOffset = Math.random() * Math.PI * 2;
