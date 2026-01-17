@@ -10,7 +10,7 @@ let isBlowing = false;
 let confettiActive = false;
 let envelopeOpened = false;
 
-// imp : microphone sounddd
+// imp : microphone sound
 let microphone = null;
 let audioContext = null;
 let analyser = null;
